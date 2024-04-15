@@ -1,0 +1,133 @@
+body {
+  background-color: rgb(25, 19, 61);
+}
+.main {
+  padding: 20px;
+  margin: 50px;
+  border: 0.5px solid grey;
+  border-radius: 10px;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+}
+.btn {
+  padding: 7px 20px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+.btn:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.shop-btn {
+  position: absolute;
+  right: 50px;
+}
+.cookie-points {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.cookie-points > img {
+  transition: all 0.1s;
+}
+
+.cookie-points > img:hover {
+  cursor: pointer;
+}
+.cookie-points > img:active {
+  transform: scale(0.95);
+}
+
+.point-box {
+  border-bottom: 1px solid grey;
+  width: 30%;
+  padding: 15px;
+}
+
+.shop-title {
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+  /* font-size: 25px; */
+}
+
+.list-item {
+  padding: 10px;
+  border: 0.5px solid lightgray;
+  margin: 10px;
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+.list-item:hover {
+  cursor: pointer;
+  background-color: rgb(250, 197, 176);
+}
+
+.disabled {
+  color: lightgray;
+}
+
+.list-item.disabled:hover {
+  background-color: transparent;
+  cursor: default;
+}
+/* // "#7B241C", "#5499C7", "#1ABC9C", "#9B59B6", "#F1C40F", "#3498DB", "#27AE60", "#E67E22", "#2E4053", "#D35400", "#8E44AD", "#16A085", "#F39C12", "#34495E", "#C0392B" */
+.color {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.color > div {
+  height: 25px;
+  width: 50px;
+  border: 0.5px solid rgb(0, 0, 0);
+  border-radius: 3px;
+}
+.color > div:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.color > div:nth-child(1) {
+  background-color: #7b241c;
+}
+.color > div:nth-child(2) {
+  background-color: #5499c7;
+}
+.color > div:nth-child(3) {
+  background-color: #1abc9c;
+}
+.color > div:nth-child(4) {
+  background-color: #9b59b6;
+}
+.color > div:nth-child(5) {
+  background-color: #f1c40f;
+}
+.color > div:nth-child(6) {
+  background-color: #3498db;
+}
+.color > div:nth-child(7) {
+  background-color: #e67e22;
+}
+.color > div:nth-child(8) {
+  background-color: #16a085;
+}
+.color > div:nth-child(9) {
+  background-color: #d35400;
+}
+.color > div:nth-child(10) {
+  background-color: #2e4053;
+}
