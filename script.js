@@ -2,28 +2,58 @@ const cookie = document.getElementById('cookie');
 const totalPoints = document.getElementById('points');
 const mainBG = document.getElementById('main-bg');
 const colorBG = document.getElementById('bg-color')
-
 const goToShopBtn = document.getElementById('shop-btn');
 const shopBox = document.getElementById('shop-box');
 const backBtn = document.getElementById('back-btn');
+const textInfoBG = document.getElementById('text-bg')
+const textInfoError = document.getElementById('text-error')
+const doublePoints = document.querySelector('.list-item:nth-of-type(1)');
+const changeCookiepoints = document.querySelector('.list-item:nth-of-type(2)')
+const cookieSpinPoints = document.querySelector('.list-item:nth-of-type(3)')
+const quintuplePoints = document.querySelector('.list-item:nth-of-type(4)')
+const changeBackgroundPoints = document.querySelector('.list-item:nth-of-type(5)')
 
-const cookieImg = document.getElementById('coockie')
-// const cookieImgUpgrade = document.getElementById('img-upgrade')
-// cookieImgUpgrade.style.display = 'none'
+cookie.classList.remove('animation')
 
-console.log(cookie);
-//////////////////////////////////////////////// DO NOT SHOW DHOP BBY DEFAULT
+
+
+let points = 0
+let addAmount = 1
+
+const updatePoints = () => totalPoints.innerText = points
+
+////////////////////////////////////////////// DO NOT SHOW DHOP BBY DEFAULT
 shopBox.style.display = 'none';
 const openShop = () => shopBox.style.display = shopBox.style.display === 'none' ? 'block' : 'none';
 const closeShop = () => shopBox.style.display = shopBox.style.display === 'block' ? 'none' : 'block';
-
 goToShopBtn.onclick = () => openShop();
 backBtn.onclick = () => closeShop();
 
+
+
 /////////////////////////////////////////////////  DO  NOT SHOW COLORS  BY DEFAULT
 colorBG.style.display = 'none'
-const openColors = () => colorBG.style.display = 'flex';
-const closeColors = () => colorBG.style.display = 'none';
+const toggleColor = () => {
+    colorBG.style.display = colorBG.style.display === 'none' ? 'flex' : 'none';
+};
+const openColors = () => toggleColor
+const closeColors = () => toggleColor
+
+
+cookie.onclick = () => {
+    points += addAmount
+    if (points >= 5) {
+        doublePoints.classList.remove('disabled')
+        changeBackgroundPoints.classList.remove('disabled')
+        cookieSpinPoints.classList.remove('disabled')
+
+    }
+    if (points >= 10) {
+        changeCookiepoints.classList.remove('disabled')
+        quintuplePoints.classList.remove('disabled')
+    }
+    updatePoints()
+}
 
 
 ///////////////////////////////////////////////// ADD DISABLED CLASS
@@ -32,175 +62,105 @@ listItems.forEach(item => {
     item.classList.add('disabled');
 });
 
-const doublePoints = document.querySelector('.list-item:nth-of-type(1)');
-const changeCookiepoints = document.querySelector('.list-item:nth-of-type(2)')
-const cookieSpinPoints = document.querySelector('.list-item:nth-of-type(3)')
-const quintuplePoints = document.querySelector('.list-item:nth-of-type(4)')
-const changeBackgroundPoints = document.querySelector('.list-item:nth-of-type(5)')
+
+/////////////////////////////////////////////////////  TEXT ERROR
+function textError() {
+    textInfoError.innerHTML = `Not enough points <span class="material-symbols-outlined">
+    sentiment_dissatisfied
+    </span>`
+    textInfoError.style.color = '#d72a2a'
+    textInfoError.style.textTransform = 'uppercase'
+    textInfoError.style.fontWeight = '600'
+    textInfoError.style.letterSpacing = '3px'
+    textInfoError.style.display = 'flex'
+    textInfoError.style.alignItems = 'center'
+    textInfoError.style.fontSize = '12px'
+    textInfoError.style.width = '100%'
+    textInfoError.style.justifyContent = 'center'
+}
 
 
 
-let counter = 0;
-let currentUpgrade = null;
 
-//////////////////////////////////////////////////////////////  IF COUNTER > 5 || COUNTER >10 REMOVE CLASS
-cookie.addEventListener('click', () => {
-    counter++
-    totalPoints.innerText = counter;
+doublePoints.onclick = () => {
+    if (points >= 5) {
+        points -= 5
+        addAmount = 2
+        updatePoints()
+    } else {
+        updatePoints()
 
-    if (counter >= 5) {
-        doublePoints.classList.remove('disabled')
-        changeBackgroundPoints.classList.remove('disabled')
-        cookieSpinPoints.classList.remove('disabled')
+        textError()
     }
-    if (counter >= 10) {
-        changeCookiepoints.classList.remove('disabled')
-        quintuplePoints.classList.remove('disabled')
+}
+
+quintuplePoints.onclick = () => {
+    if (points >= 10) {
+        points -= 10
+        addAmount = 5
+        updatePoints()
+    } else {
+        textError()
     }
-});
-
-////////////////////////////////////////////////////////////  -5 POINT FOR DOUBLE POINTS
-doublePoints.addEventListener('click', () => {
-    if (counter >= 5) {
-        counter -= 5;
-        totalPoints.innerText = counter;
-    }
-    cookie.addEventListener('click', () => {
-        if (currentUpgrade === 'doublePoints') {
-            counter += 2;
-        } else {
-            counter += 1;
-        }
-        totalPoints.innerText = counter;
-
-    });
-
-});
-
-//////////////////////////////////////////////////////////////  -5 POINT FOR quintuplePoints POINTS
-quintuplePoints.addEventListener('click', () => {
-    if (counter >= 5) {
-        counter -= 5;
-        totalPoints.innerText = counter;
-    }
-    cookie.addEventListener('click', () => {
-        if (currentUpgrade === 'quintuplePoints') {
-            counter += 8;
-        } else {
-            counter += 1;
-        }
-        totalPoints.innerText = counter;
-
-    });
-});
-
-//////////////////////////////////////////////////////////////  CHANGE COOKIE IMAGE
-
-// const cookieImgUpgrade = document.getElementById('img-upgrade')
-// cookieImgUpgrade.style.display = 'none'
+}
 
 
-changeCookiepoints.addEventListener('click', () => {
-    if (counter >= 10) {
-        counter -= 10
-        totalPoints.innerText = counter;
-        const imgUpgrade = document.createElement(`img`)
-        imgUpgrade.innerHTML = `   <img
-id="img-upgrade"
-src="https://png.pngtree.com/png-vector/20230728/ourmid/pngtree-cookie-monster-face-vector-png-image_6908674.png"
-alt=""
-/>`
-        const cookieImg = document.getElementById('coockie')
-        cookieImg.style.display = 'none'
-
-        console.log(imgUpgrade);
+changeCookiepoints.onclick = () => {
+    if (points >= 5) {
+        points -= 5
+        updatePoints(points);
+        document.getElementById('cookie').src = 'https://png.pngtree.com/png-vector/20230728/ourmid/pngtree-cookie-monster-face-vector-png-image_6908674.png'
     } else {
         event.preventDefault();
-        alert('Not enough points')
+        textError()
     }
-})
+}
 
 
 
+cookieSpinPoints.onclick = () => {
+    if (points >= 5) {
+        points -= 5;
+        updatePoints(points);
+        cookie.classList.add('animation')
 
+    } else {
+        event.preventDefault();
+        textError()
+    }
+};
 
-
-
-//////////////////////////////////////////////////////////////  CHANGE BACKGROUD COLOR
-changeBackgroundPoints.addEventListener('click', () => {
-    if (counter >= 5) {
-        openColors();
+changeBackgroundPoints.onclick = () => {
+    if (points >= 5) {
+        toggleColor();
         const colorList = document.querySelectorAll('.color > div')
         colorList.forEach(color => {
             color.addEventListener('click', () => {
-                if (counter >= 5) {
+                if (points >= 5) {
                     const computedStyle = window.getComputedStyle(color);
                     const bgColor = computedStyle.backgroundColor;
                     mainBG.style.backgroundColor = bgColor;
-                    counter -= 5;
-                    totalPoints.innerText = counter;
+                    points -= 5;
+                    updatePoints(points);
                 } else {
-                    alert(`You don't have enough points`);
+                    textInfoBG.innerHTML = `Not enough points <span class="material-symbols-outlined">
+                    sentiment_dissatisfied
+                    </span>`
+                    textInfoBG.style.color = '#d72a2a'
+                    textInfoBG.style.textTransform = 'uppercase'
+                    textInfoBG.style.fontWeight = '600'
+                    textInfoBG.style.letterSpacing = '3px'
+                    textInfoBG.style.display = 'flex'
+                    textInfoBG.style.alignItems = 'center'
+                    textInfoBG.style.fontSize = '14px'
                 }
             });
         });
     }
-})
-
-
-
-
-
-//EVENT  LISTENER OF SELECTED  UPGRADE
-cookie.addEventListener('click', () => {
-    currentUpgrade = 'cookie'
-})
-doublePoints.addEventListener('click', () => {
-    currentUpgrade = 'doublePoints'
-})
-quintuplePoints.addEventListener('click', () => {
-    currentUpgrade = 'quintuplePoints'
-})
-// changeCookiepoints.addEventListener('click', () => {
-//     currentUpgrade = 'changeCookiepoints'
-// })
-// cookieSpinPoints.addEventListener('click', () => {
-//     currentUpgrade = 'cookieSpinPoints'
-// })
-changeBackgroundPoints.addEventListener('click', () => {
-    currentUpgrade = 'changeBackgroundPoints'
-})
+}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// if (currentUpgrade === 'quintuplePoints' && currentUpgrade === 'doublePoints') {
-//     counter = counter + 7
-//     totalPoints.innerText = counter;
-// }

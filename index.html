@@ -4,23 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cookie Clicker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
   </head>
   <body>
-    <!-- sitas -->
-    <!-- <img
-      id="img-upgrade"
-      src="https://png.pngtree.com/png-vector/20230728/ourmid/pngtree-cookie-monster-face-vector-png-image_6908674.png"
-      alt=""
-    /> -->
     <div id="main-bg" class="main">
-      <button id="shop-btn" class="btn shop-btn">Shop</button>
+      <button id="shop-btn" class="btn shop-btn">
+        <span class="material-symbols-outlined"> shopping_cart </span>
+      </button>
       <div class="cookie-points">
         <img
           id="cookie"
           src="https://www.freeiconspng.com/thumbs/cookie/download-biscuit-cookie-monster-clipart-24.png"
           alt="Cookie"
+          class="animation"
         />
         <div class="point-box">
           Your points: <b><span id="points">0</span></b>
@@ -29,14 +37,33 @@
     </div>
 
     <div id="shop-box" class="shop main">
-      <button id="back-btn" class="btn back-btn">Go back to game</button>
+      <button id="back-btn" class="btn back-btn">
+        <span class="material-symbols-outlined"> close </span>
+      </button>
       <div class="shop-list">
         <h3 class="shop-title">Upgrades</h3>
-        <div class="list-item">Get 1point = 2 points for 5 points</div>
-        <div class="list-item">Change your cookie for 10 points</div>
-        <div class="list-item">Make your cookie to spin for 5 points</div>
-        <div class="list-item">Get 1point = 5 points for 10 points</div>
-        <div class="list-item">Change background color for 5 points</div>
+        <div class="list-item">
+          1point = 2 points <span><b>-50</b> points</span>
+        </div>
+        <span id="text-error"></span>
+        <div class="list-item">
+          Change your cookie <span><b>-100</b> points</span>
+        </div>
+        <span id="text-error"></span>
+
+        <div class="list-item">
+          Make your cookie to spin <span><b>-50</b> points</span>
+        </div>
+        <span id="text-error"></span>
+
+        <div class="list-item">
+          1point = 5 points <span><b>-100</b> points</span>
+        </div>
+        <span id="text-error"></span>
+
+        <div class="list-item">
+          Change background color <span><b>-50</b> points</span>
+        </div>
         <div id="bg-color" class="color">
           <div></div>
           <div></div>
@@ -48,6 +75,7 @@
           <div></div>
           <div></div>
           <div></div>
+          <span id="text-bg"></span>
         </div>
       </div>
     </div>
