@@ -22,7 +22,7 @@ let addAmount = 1
 
 const updatePoints = () => totalPoints.innerText = points
 
-////////////////////////////////////////////// DO NOT SHOW DHOP BBY DEFAULT
+////////////////////////////////////////////// DO NOT SHOW SHOP BBY DEFAULT
 shopBox.style.display = 'none';
 const openShop = () => shopBox.style.display = shopBox.style.display === 'none' ? 'block' : 'none';
 const closeShop = () => shopBox.style.display = shopBox.style.display === 'block' ? 'none' : 'block';
@@ -42,13 +42,13 @@ const closeColors = () => toggleColor
 
 cookie.onclick = () => {
     points += addAmount
-    if (points >= 5) {
+    if (points >= 50) {
         doublePoints.classList.remove('disabled')
         changeBackgroundPoints.classList.remove('disabled')
         cookieSpinPoints.classList.remove('disabled')
 
     }
-    if (points >= 10) {
+    if (points >= 100) {
         changeCookiepoints.classList.remove('disabled')
         quintuplePoints.classList.remove('disabled')
     }
@@ -83,8 +83,8 @@ function textError() {
 
 
 doublePoints.onclick = () => {
-    if (points >= 5) {
-        points -= 5
+    if (points >= 50) {
+        points -= 50
         addAmount = 2
         updatePoints()
     } else {
@@ -95,8 +95,8 @@ doublePoints.onclick = () => {
 }
 
 quintuplePoints.onclick = () => {
-    if (points >= 10) {
-        points -= 10
+    if (points >= 100) {
+        points -= 100
         addAmount = 5
         updatePoints()
     } else {
@@ -106,8 +106,8 @@ quintuplePoints.onclick = () => {
 
 
 changeCookiepoints.onclick = () => {
-    if (points >= 5) {
-        points -= 5
+    if (points >= 50) {
+        points -= 50
         updatePoints(points);
         document.getElementById('cookie').src = 'https://png.pngtree.com/png-vector/20230728/ourmid/pngtree-cookie-monster-face-vector-png-image_6908674.png'
     } else {
@@ -119,8 +119,8 @@ changeCookiepoints.onclick = () => {
 
 
 cookieSpinPoints.onclick = () => {
-    if (points >= 5) {
-        points -= 5;
+    if (points >= 50) {
+        points -= 50;
         updatePoints(points);
         cookie.classList.add('animation')
 
@@ -131,16 +131,16 @@ cookieSpinPoints.onclick = () => {
 };
 
 changeBackgroundPoints.onclick = () => {
-    if (points >= 5) {
+    if (points >= 50) {
         toggleColor();
         const colorList = document.querySelectorAll('.color > div')
         colorList.forEach(color => {
             color.addEventListener('click', () => {
-                if (points >= 5) {
+                if (points >= 50) {
                     const computedStyle = window.getComputedStyle(color);
                     const bgColor = computedStyle.backgroundColor;
                     mainBG.style.backgroundColor = bgColor;
-                    points -= 5;
+                    points -= 50;
                     updatePoints(points);
                 } else {
                     textInfoBG.innerHTML = `Not enough points <span class="material-symbols-outlined">
